@@ -47,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     public HttpStatus deleteEmployee(Long id) {
         log.info("Inside delete");
         try {
-            Employee employee = employeeRepository.findById(id).get();
+            employeeRepository.deleteById(id);
             return HttpStatus.OK;
         } catch (Exception e) {
             // TODO: handle exception
