@@ -13,7 +13,5 @@ public class Department {
 
     private String departmentName;
 
-    private String departmentAddress;
-
     private String departmentCode;
 }
