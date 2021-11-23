@@ -1,6 +1,7 @@
 package com.hhhvn.VO;
 
-import com.hhhvn.enntity.Employee;
+import com.hhhvn.entity.Employee;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

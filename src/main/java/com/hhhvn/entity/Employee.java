@@ -1,4 +1,4 @@
-package com.hhhvn.enntity;
+package com.hhhvn.entity;
 
 import lombok.*;
 

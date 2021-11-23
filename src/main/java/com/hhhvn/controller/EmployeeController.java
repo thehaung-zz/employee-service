@@ -1,7 +1,7 @@
 package com.hhhvn.controller;
 
 import com.hhhvn.VO.ResponseTemplateVO;
-import com.hhhvn.enntity.Employee;
+import com.hhhvn.entity.Employee;
 import com.hhhvn.service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
