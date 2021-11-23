@@ -11,16 +11,18 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 @Service
-public class EmpoyeeServiceImpl {
+public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     EmployeeRepository employeeRepository;
 
     @Autowired
     RestTemplate restTemplate;
 
+    @Override
     public Employee saveEmployee(Employee employee){
         return employeeRepository.save((employee));
     }
+    @Override
     public List<Employee> getAllEmployee() {
         List<Employee> list= employeeRepository.findAll();
         return list;
@@ -35,5 +37,30 @@ public class EmpoyeeServiceImpl {
         vo.setDepartment(department);
         return vo;
     }
+    @Override
+    public String deleteEmployee(Long id) {
+        Employee employee = employeeRepository.findById(id).get();
+        if(employee!=null){
+            employeeRepository.delete(employee);
+            return "Delete Sucessful";
+        }else{
+            return "Delete fail";
+        }
+    }
+
+    @Override
+    public Employee updateEmployeeId(Long id, Employee employeeIdd) {
+        Employee employee = employeeRepository.findById(id).get();
+        if(employee==null) {
+            return null;
+        }else {
+            employee.setFirstName(employeeIdd.getFirstName());
+            employee.setLastName(employeeIdd.getLastName());
+            employee.setEmail(employeeIdd.getEmail());
+            return employeeRepository.save(employee);
+        }
+    }
+
 
 }
+
