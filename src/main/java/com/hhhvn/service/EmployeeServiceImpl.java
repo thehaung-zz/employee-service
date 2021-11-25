@@ -88,7 +88,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private Department getDepartment(Long id) {
 		try {
 			Department department = restTemplate.getForObject(
-					"http://localhost:9001/departments/" + id, Department.class);
+					"http://localhost:9001/department/" + id, Department.class);
 			return department;
 		} catch (Exception e) {
 			// TODO: handle exception
