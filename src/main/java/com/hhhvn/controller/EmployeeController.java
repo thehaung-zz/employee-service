@@ -19,9 +19,11 @@ import com.hhhvn.service.EmployeeServiceImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("employee")
+@Tag(name = "Employee Controller - Quản Lý Nhân Viên")
 public class EmployeeController {
 	@Autowired
 	private EmployeeServiceImpl employeeService;
