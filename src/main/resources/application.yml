@@ -17,3 +17,17 @@ springdoc:
     path: /employee/swagger-ui.html
   api-docs:
     path: /employee/v3/api-docs/
+
+resilience4j:
+  retry:
+    instances:
+      basic:
+        maxRetryAttemps: 5
+        waitDuration: 1s
+
+  ratelimiter:
+    instances:
+      limitbasic:
+        limitForPeriod: 2
+        limitRefreshPeriod: 15s
+        timeoutDuration: 1

@@ -2,6 +2,8 @@ package com.hhhvn.service;
 
 import java.util.List;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -84,7 +86,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 	}
-
+	@RateLimiter(name="limitbasic")
+	@Retry(name="basic")
 	private Department getDepartment(Long id) {
 		try {
 			Department department = restTemplate.getForObject(
