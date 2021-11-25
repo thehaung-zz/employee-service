@@ -3,7 +3,6 @@ package com.hhhvn.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +42,6 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/")
-	@Cacheable("employee")
 	@Operation(summary = "Lấy danh sách tất cả nhân viên")
 	public List<Employee> getAllEmployee() {
 		return employeeService.getAllEmployee();
