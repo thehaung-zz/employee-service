@@ -2,8 +2,6 @@ package com.hhhvn.service;
 
 import java.util.List;
 
-import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
-import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -17,6 +15,8 @@ import com.hhhvn.VO.ResponseTemplateVO;
 import com.hhhvn.entity.Employee;
 import com.hhhvn.repository.EmployeeRepository;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -102,8 +102,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 	}
-	@RateLimiter(name="limitbasic")
-	@Retry(name="basic")
+
+	@RateLimiter(name = "limitbasic")
+	@Retry(name = "basic")
 	private Department getDepartment(Long id) {
 		try {
 			Department department = restTemplate.getForObject(
