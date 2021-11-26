@@ -28,7 +28,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeServiceImpl employeeService;
 
-	@PostMapping("/")
+	@PostMapping("")
 	@Operation(summary = "Thêm nhân viên mới")
 	public Employee saveEmployee(@RequestBody Employee employee) {
 		return employeeService.saveEmployee(employee);
@@ -41,7 +41,7 @@ public class EmployeeController {
 		return employeeService.getEmployeeWithDepartment(employeeId);
 	}
 
-	@GetMapping("/")
+	@GetMapping("")
 	@Operation(summary = "Lấy danh sách tất cả nhân viên")
 	public List<Employee> getAllEmployee() {
 		return employeeService.getAllEmployee();
