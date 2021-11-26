@@ -5,6 +5,8 @@ import java.util.List;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -26,16 +28,30 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired
 	RestTemplate restTemplate;
 
+	private HashOperations hashOperations;// crud hash
+	private RedisTemplate redisTemplate;
+
+	public EmployeeServiceImpl(RedisTemplate redisTemplate) {
+		this.hashOperations = redisTemplate.opsForHash();
+		this.redisTemplate = redisTemplate;
+	}
+
 	@Override
 	public Employee saveEmployee(Employee employee) {
 		log.info("Inside save");
-		return employeeRepository.save((employee));
+		System.out.println(employee);
+		hashOperations.put("EMPLOYEE", employee.getEmployeeId(), employee);
+		return employeeRepository.save(employee);
 	}
 
 	@Override
 	public List<Employee> getAllEmployee() {
 		log.info("Inside getAll");
 		List<Employee> list = employeeRepository.findAll();
+		boolean validation = list.size() > hashOperations.values("EMPLOYEE").size();
+		if (!hashOperations.values("EMPLOYEE").isEmpty() && !validation) {
+			return hashOperations.values("EMPLOYEE");
+		}
 		return list;
 	}
 
