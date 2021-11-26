@@ -1,33 +1,39 @@
+#spring:
+#  application:
+#    name: employee-service
+#eureka:
+#  client:
+#    register-with-eureka:
+#      value: true
+#    fetch-registry:
+#      value: true;
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#    instance:
+#      hostname: localhost
+#      
+#springdoc:
+#  swagger-ui:
+#    path: /employee/swagger-ui.html
+#  api-docs:
+#    path: /employee/v3/api-docs/
+#
+#resilience4j:
+#  retry:
+#    instances:
+#      basic:
+#        maxRetryAttemps: 5
+#        waitDuration: 1s
+#
+#  ratelimiter:
+#    instances:
+#      limitbasic:
+#        limitForPeriod: 2
+#        limitRefreshPeriod: 15s
+#        timeoutDuration: 1
+
 spring:
-  application:
-    name: employee-service
-eureka:
-  client:
-    register-with-eureka:
-      value: true
-    fetch-registry:
-      value: true;
-    service-url:
-      defaultZone: http://172.17.0.1:8761/eureka
-    instance:
-      hostname: localhost
-      
-springdoc:
-  swagger-ui:
-    path: /employee/swagger-ui.html
-  api-docs:
-    path: /employee/v3/api-docs/
-
-resilience4j:
-  retry:
-    instances:
-      basic:
-        maxRetryAttemps: 5
-        waitDuration: 1s
-
-  ratelimiter:
-    instances:
-      limitbasic:
-        limitForPeriod: 2
-        limitRefreshPeriod: 15s
-        timeoutDuration: 1
+   application:
+       name: employee-service
+   config:
+      import: "configserver:http://localhost:8888"
