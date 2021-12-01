@@ -4,7 +4,7 @@ MAINTAINER Hau Nguyen
 COPY pom.xml /build/
 COPY src /build/src/
 WORKDIR /build/
-RUN mvn package
+RUN mvn package -Dmaven.test.skip=true
 # Integration
 FROM openjdk:8-jre-alpine
 WORKDIR /app
