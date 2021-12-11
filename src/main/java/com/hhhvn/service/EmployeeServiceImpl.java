@@ -117,7 +117,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Retry(name = "basic")
     private Department getDepartment(Long id) {
         try {
-            Department department = restTemplate.getForObject("http://localhost:9001/department/" + id, Department.class);
+            Department department = restTemplate.getForObject("http://172.17.0.9:9001/department/" + id, Department.class);
             return department;
         } catch (Exception e) {
             // TODO: handle exception
